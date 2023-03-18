@@ -31,7 +31,7 @@ function App ()  {
     setQuery(search);
     setSearch('');
   }
-
+  
   return (
     <div className='App'>
       <form onSubmit={getSearch} className='search-form'>
@@ -41,16 +41,22 @@ function App ()  {
         </button>
       </form>
       <div className='recipes'>
-      {recipes.map(recipe =>(
+      {recipes.map(({ recipe }) => {
+       const { label, calories, image, ingredients, dishType, mealType } = recipe
+
+      return (
         <Recipe 
-        key={recipe.recipe.label}
-        title = {recipe.recipe.label} 
-        calories = {recipe.recipe.calories}
-        image = {recipe.recipe.image}
-        ingredients = {recipe.recipe.ingredients}
-        />
-                
-      ))}
+        key={label}
+        title = {label} 
+        calories = {calories}
+        image = {image}
+        ingredients = {ingredients}
+        dishType = {dishType}
+        mealType = {mealType}
+        />      
+      )
+      }
+      )}
       </div>
     </div>
   )
